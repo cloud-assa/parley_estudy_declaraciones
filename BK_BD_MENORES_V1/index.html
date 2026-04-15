@@ -399,12 +399,11 @@ body,html{overflow-x:hidden}
   .cg2,.cg3,.cg2h,.cg4{grid-template-columns:1fr}
   .ft-body{flex-wrap:wrap;justify-content:center}
   .content{padding:12px 10px 90px}
-  .kv{font-size:20px}
+  .kv{font-size:22px}
   .topbar{padding:8px 12px}
   .tb-r{gap:6px}
   #lu{display:none}
   .cg2h{grid-template-columns:1fr}
-  .leg{flex-wrap:wrap;gap:6px}
 }
 @media(min-width:1800px){
   .kg{grid-template-columns:repeat(8,1fr)}
@@ -414,25 +413,16 @@ body,html{overflow-x:hidden}
   .kv{font-size:18px}
   .kg{grid-template-columns:repeat(2,1fr);gap:8px}
   .cc{padding:12px}
-  .cw canvas,.cw-sm canvas,.cw-lg canvas,.cw-xl canvas{max-height:180px}
+  .cw canvas,.cw-sm canvas,.cw-lg canvas,.cw-xl canvas{max-height:200px}
   .section-hdr{margin:18px 0 10px}
   .filter-tray{bottom:10px;border-radius:14px}
   .ft-body{padding:6px 8px;gap:4px}
   .ft-select{padding:6px 8px;font-size:10px}
-  .supreme-stats{flex-direction:column;align-items:center}
-  .supreme-stat{min-width:70px}
 }
 @media(min-width:2000px){
   .content{max-width:1800px}
   .cg2{grid-template-columns:1fr 1fr}
   font-size:14px
-}
-@media(max-width:360px){
-  .kg{grid-template-columns:1fr 1fr;gap:6px}
-  .kc{padding:12px}
-  .tb-logo{height:20px}
-  .pill{max-width:200px}
-  .pi{padding:4px 8px;font-size:10px}
 }
 </style>
 </head>
@@ -984,10 +974,9 @@ let raw=[],fil=[],charts={},page=1,psz=25,sq='';
 function platLabel(p){
   if(!p)return'—';
   const l=p.toLowerCase().replace(/[\s_]/g,'');
-  if(l.includes('twitter')||l.includes('x.com')||l==='x'||l.startsWith('xtwitter'))return'Perfil Oficial';
-  if(l.includes('youtube'))return'Transmissão ao Vivo';
-  if(l.includes('facebook')||l.includes('instagram')||l.includes('tiktok'))return'Rede Social';
-  return'Artigo do Senado';
+  if(l.includes('twitter')||l.includes('x.com')||l==='x'||l.startsWith('xtwitter'))return'Perfis Oficiais';
+  if(l.includes('youtube'))return'Transmissões ao Vivo';
+  return'Artigo de Senado';
 }
 function platAbbr(p){
   if(!p)return'?';
