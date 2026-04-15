@@ -2,7 +2,7 @@
 
 Panel administrativo para visualización y monitoreo de datos con métricas e indicadores en tiempo real.
 
-## � ¿Qué muestra?
+## 📊 ¿Qué muestra?
 
 Dashboard interactivo que presenta:
 
@@ -14,10 +14,11 @@ Dashboard interactivo que presenta:
 
 ## ⚙️ Configuración
 
-1. Copia `config.example.js` y renómbralo a `config.js`
-2. Reemplaza las credenciales de conexión según tu proyecto
+1. Navega a la carpeta `docs/`
+2. Copia `config.example.js` y renómbralo a `config.js`
+3. Reemplaza las credenciales de conexión según tu proyecto
 
-## �️ Requisitos
+## 🛠️ Requisitos
 
 - Navegador web moderno
 - Acceso a internet (usa CDNs para librerías)
