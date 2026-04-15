@@ -795,41 +795,42 @@ body,html{overflow-x:hidden}
             <div class="cw-xl"><canvas id="c-pkw"></canvas></div>
           </div>
           <div class="cc">
-            <div class="ch"><div><div class="ct">Palavras-chave por sentimento</div><div class="cs">Top 5 termos por categoria emocional</div></div></div>
-            <div id="pkw-sent-words" style="display:flex;flex-direction:column;gap:10px;margin-top:6px"></div>
+            <div class="ch"><div><div class="ct">Palavras-chave por partido</div><div class="cs">Top 8 partidos — termos mais usados</div></div></div>
+            <div id="pkw-party-list" style="margin-top:8px;display:flex;flex-direction:column;gap:8px;max-height:340px;overflow-y:auto"></div>
           </div>
         </div>
         <div class="cg2">
           <div class="cc">
-            <div class="ch"><div><div class="ct">Palavras-chave por partido</div><div class="cs">Top 8 partidos — termos mais usados</div></div></div>
-            <div id="pkw-party-list" style="margin-top:8px;display:flex;flex-direction:column;gap:8px;max-height:340px;overflow-y:auto"></div>
-          </div>
-          <div class="cc">
             <div class="ch"><div><div class="ct">Subtema × Sentimento</div><div class="cs">Sentimento por sub-tema</div></div></div>
             <div class="cw-lg"><canvas id="c-subtema-sent"></canvas></div>
           </div>
+          <div class="cc">
+            <div class="ch"><div><div class="ct">Partidos que mais citam termos</div><div class="cs">Frequência de palavras-chave por partido</div></div></div>
+            <div id="pkw-top-parties" style="margin-top:8px;display:flex;flex-direction:column;gap:8px;max-height:340px;overflow-y:auto"></div>
+          </div>
         </div>
 
-        <!-- ══ CONSTELAÇÃO TEMÁTICA (Gráfico Supremo) ══ -->
-        <div class="section-hdr"><h2><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>Constelação Temática</h2><div class="section-line"></div></div>
+        <!-- ══ MAPA DE CALOR TEMÁTICO (Gráfico Supremo) ══ -->
+        <div class="section-hdr"><h2><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Matrix de Impacto Temático</h2><div class="section-line"></div></div>
         <div class="cg1"><div class="cc">
           <div class="ch">
             <div>
-              <div class="ct">Fingerprint de Discurso · Mapa de Impacto Temático</div>
-              <div class="cs">Frequência, sentimento dominante e diversidade partidária por tópico-lei — pétalas proporcionais ao volume</div>
+              <div class="ct">矩阵 de Correlação · Subtemas × Partidos</div>
+              <div class="cs">Intensidade de discussão por partido e tema — tamanho proporcional ao volume</div>
             </div>
-            <span class="cb" id="b-supreme">—</span>
+            <span class="cb" id="b-heatmap">—</span>
           </div>
-          <div style="display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap">
-            <div style="flex:0 0 auto;display:flex;align-items:center;justify-content:center;min-width:280px">
-              <canvas id="supreme-canvas"></canvas>
-            </div>
-            <div style="flex:1;min-width:220px;display:flex;flex-direction:column;gap:6px;margin-top:8px">
-              <div style="font-size:10px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">Tópicos · Frequência</div>
-              <div id="supreme-legend" style="display:flex;flex-direction:column;gap:5px"></div>
+          <div id="heatmap-container" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:4px;margin-top:12px"></div>
+          <div style="margin-top:16px">
+            <div style="font-size:10px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Legenda</div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <div style="display:flex;align-items:center;gap:4px"><div style="width:10px;height:10px;border-radius:2px;background:var(--pos)"></div><span style="font-size:10px;color:var(--t2)">Positivo</span></div>
+              <div style="display:flex;align-items:center;gap:4px"><div style="width:10px;height:10px;border-radius:2px;background:var(--neg)"></div><span style="font-size:10px;color:var(--t2)">Negativo</span></div>
+              <div style="display:flex;align-items:center;gap:4px"><div style="width:10px;height:10px;border-radius:2px;background:var(--neu)"></div><span style="font-size:10px;color:var(--t2)">Neutro</span></div>
+              <div style="display:flex;align-items:center;gap:4px"><div style="width:10px;height:10px;border-radius:2px;background:var(--mix)"></div><span style="font-size:10px;color:var(--t2)">Misto</span></div>
             </div>
           </div>
-          <div class="supreme-stats" id="supreme-stats"></div>
+          <div class="supreme-stats" id="heatmap-stats"></div>
         </div></div>
 
       </div>
@@ -2669,31 +2670,6 @@ function rPkw(){
   charts['c-pkw']=new Chart(ctx,{type:'bar',data:{labels,datasets:[{data,backgroundColor:labels.map((_,i)=>PAL[i%PAL.length]),borderRadius:4,borderSkipped:false}]},options:{...ops({showLeg:false}),indexAxis:'y'}});
 }
 
-function rPkwBySent(){
-  const el=document.getElementById('pkw-sent-words');
-  if(!el)return;
-  const sentGroups={};
-  fil.forEach(r=>{
-    if(!r.SENTIMIENTO||!r.PALABRAS_CLAVE)return;
-    if(!sentGroups[r.SENTIMIENTO])sentGroups[r.SENTIMIENTO]=[];
-    parsePKW(r).forEach(k=>sentGroups[r.SENTIMIENTO].push(k));
-  });
-  const keys=Object.keys(sentGroups).sort((a,b)=>(SENT_ORDER.indexOf(a)+99)-(SENT_ORDER.indexOf(b)+99));
-  if(!keys.length){el.innerHTML='<div class="empty">Sem dados de sentimento.</div>';return;}
-  el.innerHTML=keys.map(s=>{
-    const freq={};
-    sentGroups[s].forEach(k=>{freq[k]=(freq[k]||0)+1;});
-    const top5=Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,5);
-    if(!top5.length)return'';
-    const col=sentColor(s);
-    const bars=top5.map(([w,n])=>{
-      const pct=Math.round(n/top5[0][1]*100);
-      return`<div class="sent-row"><span class="sent-label">${w}</span><div class="sent-track"><div class="sent-fill" style="width:${pct}%;background:${col}">${n}</div></div></div>`;
-    }).join('');
-    return`<div style="margin-bottom:6px"><div style="font-size:10px;font-weight:600;color:${col};margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">${s}</div><div class="sent-bars">${bars}</div></div>`;
-  }).join('');
-}
-
 function rPkwByParty(){
   const el=document.getElementById('pkw-party-list');
   if(!el)return;
@@ -2711,13 +2687,72 @@ function rPkwByParty(){
   }).join('');
 }
 
+/* ── HEATMAP SUPREMO: Subtemas × Partidos × Sentimento ── */
+function rHeatmap(){
+  const container=document.getElementById('heatmap-container');
+  const statsEl=document.getElementById('heatmap-stats');
+  const badge=document.getElementById('b-heatmap');
+  if(!container)return;
+
+  const sCnt=count(fil,'SUBTEMA');
+  const topSubs=Object.entries(sCnt).sort((a,b)=>b[1]-a[1]).slice(0,12).map(e=>e[0]);
+  const pCnt=count(fil,'PARTIDO');
+  const topParties=Object.entries(pCnt).sort((a,b)=>b[1]-a[1]).slice(0,8).map(e=>e[0]);
+
+  if(!topSubs.length||!topParties.length){
+    container.innerHTML='<div class="empty">Sem dados suficientes.</div>';
+    return;
+  }
+
+  const heatData={};
+  topSubs.forEach(sub=>{
+    heatData[sub]={};
+    topParties.forEach(pa=>{
+      const items=fil.filter(r=>r.SUBTEMA===sub&&r.PARTIDO===pa);
+      const sents={};
+      items.forEach(r=>{if(r.SENTIMIENTO){sents[r.SENTIMIENTO]=(sents[r.SENTIMIENTO]||0)+1;}});
+      const domSentEntry=Object.entries(sents).sort((a,b)=>b[1]-a[1])[0];
+      heatData[sub][pa]={count:items.length,domSent:domSentEntry?domSentEntry[0]:null};
+    });
+  });
+
+  const maxCount=Math.max(...topSubs.map(sub=>Math.max(...topParties.map(pa=>heatData[sub][pa].count))),1);
+  const totalSub=topSubs.length;
+
+  if(badge)badge.textContent=totalSub+' subtemas × '+topParties.length+' partidos';
+
+  container.innerHTML=topSubs.map(sub=>{
+    return topParties.map(pa=>{
+      const cell=heatData[sub][pa];
+      const intensity=cell.count/maxCount;
+      const bg=intensity>0?(intensity>=0.7?'rgba(34,197,94,':intensity>=0.4?'rgba(245,158,11,':intensity>=0.2?'rgba(79,142,248,':'rgba(79,142,248,')+(intensity*0.9+0.1)+')':'rgba(26,33,48,1)';
+      const sentBg=cell.domSent?(sentColor(cell.domSent)+'33'):'transparent';
+      return`<div style="background:${bg};border-radius:6px;padding:8px 6px;min-height:70px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:1px solid rgba(255,255,255,0.05)">
+        <div style="font-size:9px;font-weight:600;color:var(--t);text-align:center;line-height:1.2">${sub.length>12?sub.slice(0,11)+'…':sub}</div>
+        <div style="font-size:16px;font-weight:700;color:var(--fillg);font-family:'Fira Code',monospace">${cell.count}</div>
+        <div style="width:8px;height:8px;border-radius:50%;background:${sentBg.replace('33','')};border:1px solid ${sentBg.replace('33','88')}"></div>
+      </div>`;
+    }).join('');
+  }).join('');
+
+  if(statsEl){
+    const totalCells=topSubs.reduce((a,sub)=>a+topParties.reduce((b,pa)=>b+heatData[sub][pa].count,0),0);
+    const activeCells=topSubs.reduce((a,sub)=>a+topParties.filter(pa=>heatData[sub][pa].count>0).length,0);
+    const maxSub=topSubs.reduce((a,b)=>heatData[a][Object.values(heatData[a]).reduce((s,p)=>s+p.count,0)]>heatData[b][Object.values(heatData[b]).reduce((s,p)=>s+p.count,0)]?a:b);
+    statsEl.innerHTML=[
+      {val:totalCells.toLocaleString('pt-BR'),lbl:'Total intercções',col:'#4f8ef8'},
+      {val:activeCells,lbl:'Células ativas',col:'#22c55e'},
+      {val:maxSub.length>10?maxSub.slice(0,9)+'…':maxSub,lbl:'Subtema líder',col:'#a78bfa'},
+    ].map(s=>`<div class="supreme-stat"><span class="supreme-stat-val" style="color:${s.col}">${s.val}</span><span class="supreme-stat-lbl">${s.lbl}</span></div>`).join('');
+  }
+}
+
 function renderLang(){
   rLangKPIs();rWordFreq();rWordBySent();rKeywordTime();rBigrams();rTitleLen();
   rStyleRadar();rStyleParty();rBlindSpots();
   rCatTerms();rLangPlat();
-  rPkw();rPkwBySent();rPkwByParty();
-  rSubtemaSent();
-  rSupremeChart();
+  rPkw();rPkwByParty();rSubtemaSent();
+  rHeatmap();
 }
 
 /* ════════════════════════════════════════
