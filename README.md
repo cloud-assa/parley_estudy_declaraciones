@@ -1,32 +1,23 @@
 # BR Registry · Dashboard
 
-Dashboard web para la gestión y monitoreo de **registros**, con visualización de métricas y datos en tiempo real.
+Panel administrativo para visualización y monitoreo de datos con métricas e indicadores en tiempo real.
 
-## 📋 ¿Qué es?
+## � ¿Qué muestra?
 
-Sistema administrativo que permite consultar, filtrar y visualizar registros almacenados en **Supabase** (base de datos PostgreSQL en la nube). Diseñado para uso interno o restringido.
+Dashboard interactivo que presenta:
 
-## 🖥️ Servicios del Dashboard
+- **Panel Principal**: Vista general con KPIs y métricas resumidas
+- **Gráficos Interactivos**: Visualización de datos mediante Chart.js
+- **Tabla de Registros**: Exploración detallada de cada entrada
+- **Filtro por Fechas**: Selector de rango para consultar períodos específicos
+- **Análisis de Datos**: Perfil retórico, tópicos por partido y más
 
-| Servicio | Descripción |
-|----------|-------------|
-| **Visualización de Datos** | Tabla principal con registros de la tabla `BR_REGISTRY` |
-| **Gráficos Estadísticos** | Gráficos interactivos (Chart.js) con métricas clave |
-| **Filtro por Fechas** | Calendario con selección de rango para filtrar datos |
-| **Panel de Métricas** | KPIs y resumen de datos en tiempo real |
-
-## 🛠️ Configuración
+## ⚙️ Configuración
 
 1. Copia `config.example.js` y renómbralo a `config.js`
-2. Ingresa tus credenciales de Supabase:
-   ```javascript
-   const URL_BASE = 'https://tu-proyecto.supabase.co';
-   const KEY      = 'tu-key-public';
-   const TABLE    = 'BR_REGISTRY';
-   ```
+2. Reemplaza las credenciales de conexión según tu proyecto
 
-## 📦 Stack Tecnológico
-- **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
-- **Base de Datos**: Supabase (PostgreSQL)
-- **Gráficos**: Chart.js
-- **Efectos 3D**: Three.js (intro animada)
+## �️ Requisitos
+
+- Navegador web moderno
+- Acceso a internet (usa CDNs para librerías)
