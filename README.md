@@ -1,6 +1,6 @@
-# BR Menores · Dashboard
+# BR Registry · Dashboard
 
-Dashboard web para la gestión y monitoreo de **registros de menores**, con visualización de métricas y datos en tiempo real.
+Dashboard web para la gestión y monitoreo de **registros**, con visualización de métricas y datos en tiempo real.
 
 ## 📋 ¿Qué es?
 
@@ -10,7 +10,7 @@ Sistema administrativo que permite consultar, filtrar y visualizar registros alm
 
 | Servicio | Descripción |
 |----------|-------------|
-| **Visualización de Datos** | Tabla principal con registros de la tabla `BR_MENORES` |
+| **Visualización de Datos** | Tabla principal con registros de la tabla `BR_REGISTRY` |
 | **Gráficos Estadísticos** | Gráficos interactivos (Chart.js) con métricas clave |
 | **Filtro por Fechas** | Calendario con selección de rango para filtrar datos |
 | **Panel de Métricas** | KPIs y resumen de datos en tiempo real |
@@ -22,7 +22,7 @@ Sistema administrativo que permite consultar, filtrar y visualizar registros alm
    ```javascript
    const URL_BASE = 'https://tu-proyecto.supabase.co';
    const KEY      = 'tu-key-public';
-   const TABLE    = 'BR_MENORES';
+   const TABLE    = 'BR_REGISTRY';
    ```
 
 ## 📦 Stack Tecnológico
