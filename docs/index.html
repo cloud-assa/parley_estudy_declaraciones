@@ -691,6 +691,7 @@ body,html{overflow-x:hidden}
 .mp-cloud-tag{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:16px;cursor:pointer;border:1px solid transparent;font-weight:600;line-height:1.4;animation:mp-tag-in .3s ease both,mp-tag-drift var(--drift-dur,12s) ease-in-out infinite}
 .mp-cloud-tag:hover{animation-play-state:paused;box-shadow:0 3px 14px rgba(0,0,0,.3)}
 .mp-cloud-tag-av{width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;flex-shrink:0}
+.mp-cloud-tag-cnt{margin-left:4px;padding:1px 6px;border-radius:10px;font-size:.72em;font-weight:700;line-height:1;letter-spacing:.02em;flex-shrink:0}
 
 /* ── HERO PROFILE DASHBOARD ── */
 @keyframes mp-hero-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
@@ -3392,7 +3393,8 @@ function mpRenderCloudCanvas(){
     const dx=((i*37)%9-4).toFixed(1)+'px';
     const dy=((i*23)%7-3).toFixed(1)+'px';
     const dur=(10+(i*11)%6).toFixed(1)+'s';
-    return`<span class="mp-cloud-tag" style="font-size:${fs}px;opacity:${op};color:${col};border-color:${col}28;background:${col}0e;animation-delay:${delay}s;--dx:${dx};--dy:${dy};--drift-dur:${dur}" onclick="mpSearchSelect(${p.id},${JSON.stringify(nm)},${_mpCloudTopic?JSON.stringify(_mpCloudTopic):'null'})" title="${esc(nm)} — ${_mpCloudTopic||p.topTema||''} (${val})"><span class="mp-cloud-tag-av" style="background:${col}35;color:${col}">${init}</span>${esc(shortNm)}</span>`;
+    const topicAttr=_mpCloudTopic?` data-topic="${esc(_mpCloudTopic)}"`:'';
+    return`<span class="mp-cloud-tag" data-id="${p.id}" data-nome="${esc(nm)}"${topicAttr} style="font-size:${fs}px;opacity:${op};color:${col};border-color:${col}28;background:${col}0e;animation-delay:${delay}s;--dx:${dx};--dy:${dy};--drift-dur:${dur}" onclick="mpSearchSelect(+this.dataset.id,this.dataset.nome,this.dataset.topic||null)" title="${esc(nm)} — ${_mpCloudTopic||p.topTema||''} (${val})"><span class="mp-cloud-tag-av" style="background:${col}35;color:${col}">${init}</span>${esc(shortNm)}<span class="mp-cloud-tag-cnt" style="background:${col}22;color:${col}">${val}</span></span>`;
   }).join('');
 }
 /* ── /TOPIC CLOUD ─────────────────────────────── */
