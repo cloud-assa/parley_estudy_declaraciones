@@ -1,21 +1,8 @@
-# Dependencies
 node_modules/
-
-# Next.js build output
 .next/
-out/
-
-# Build info
 tsconfig.tsbuildinfo
 next-env.d.ts
-
-# Debug/temp
-*.log
-cloud_with_bubbles.png
 .playwright-mcp/
-docs/.mp_progress.json
-
-# Environment
+*.log
 .env
 .env.local
-.env.*.local
