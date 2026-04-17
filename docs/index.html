@@ -4,6 +4,10 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>BR Registry · Painel</title>
+<link rel="icon" type="image/png"
+  href="https://lh3.googleusercontent.com/d/1bGDL7_v0GzJYkjH2ac8Tf4Quy5Z-MLE2">
+<link rel="apple-touch-icon"
+  href="https://lh3.googleusercontent.com/d/1bGDL7_v0GzJYkjH2ac8Tf4Quy5Z-MLE2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
@@ -495,6 +499,93 @@ body,html{overflow-x:hidden}
   .content{max-width:1800px}
   .cg2{grid-template-columns:1fr 1fr}
 }
+/* ── MentalPrint ───────────────────────────────────── */
+#mp-selector{display:flex;align-items:center;gap:10px;
+  margin-bottom:16px;flex-wrap:wrap}
+#mp-selector select{background:var(--s1);border:1px solid
+  var(--b2);color:var(--t);padding:6px 10px;border-radius:
+  var(--rad-sm);font-size:13px;cursor:pointer;flex:1;
+  min-width:200px;max-width:360px}
+.mp-score-ring{position:relative;width:90px;height:55px}
+.mp-score-ring svg{width:90px;height:55px}
+.mp-score-num{position:absolute;bottom:0;left:0;right:0;
+  text-align:center;font-size:22px;font-weight:700;
+  color:var(--g)}
+.mp-kpi-card{background:var(--s1);border:1px solid var(--b);
+  border-radius:var(--rad);padding:14px;text-align:center}
+.mp-kpi-icon{font-size:20px;margin-bottom:4px}
+.mp-kpi-val{font-size:26px;font-weight:700;color:var(--t)}
+.mp-kpi-lbl{font-size:11px;color:var(--t2);margin-top:2px}
+.mp-word{display:inline-block;color:#4a90c4;
+  font-weight:600;line-height:1.3;cursor:default;
+  transition:opacity .15s}
+.mp-word:hover{opacity:.7}
+.mp-phrase-row{display:flex;align-items:center;gap:8px;
+  margin-bottom:8px}
+.mp-phrase-cnt{font-size:11px;font-weight:600;
+  color:var(--t2);width:28px;text-align:right;
+  flex-shrink:0}
+.mp-phrase-bar-wrap{flex:1;height:6px;background:
+  var(--b2);border-radius:3px;overflow:hidden}
+.mp-phrase-bar{height:100%;background:var(--t2);
+  border-radius:3px;transition:width .4s ease}
+.mp-phrase-txt{font-size:11px;color:var(--t);
+  flex-shrink:0;max-width:160px;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.mp-bar-row{display:flex;align-items:center;
+  gap:8px;margin-bottom:10px}
+.mp-bar-lbl{font-size:12px;color:var(--t);
+  width:130px;flex-shrink:0;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.mp-bar-wrap{flex:1;height:8px;background:var(--b2);
+  border-radius:4px;overflow:hidden}
+.mp-bar-fill{height:100%;border-radius:4px;
+  transition:width .5s ease}
+.mp-bar-pct{font-size:11px;color:var(--t2);
+  width:36px;text-align:right;flex-shrink:0}
+.mp-style-row{display:flex;align-items:center;
+  gap:8px;margin-bottom:10px}
+.mp-style-emoji{font-size:16px;width:22px}
+.mp-style-lbl{font-size:12px;color:var(--t);width:100px}
+.mp-style-pct{font-size:11px;color:var(--t2);
+  width:55px;text-align:right}
+.mp-style-bar-wrap{flex:1;height:8px;background:
+  var(--b2);border-radius:4px;overflow:hidden}
+.mp-style-bar{height:100%;border-radius:4px}
+.mp-obs-row{display:flex;align-items:baseline;
+  gap:8px;margin-bottom:8px}
+.mp-obs-rank{font-size:14px;font-weight:700;
+  color:var(--a);width:18px}
+.mp-obs-topic{font-size:12px;color:var(--t);flex:1}
+.mp-obs-cnt{font-size:11px;color:var(--t2)}
+.mp-tag{display:inline-block;padding:3px 9px;
+  border-radius:12px;font-size:11px;font-weight:500;
+  background:rgba(255,140,0,.15);color:#ff8c00}
+.mp-chip{display:inline-block;padding:3px 9px;
+  border-radius:12px;font-size:11px;font-weight:500;
+  background:var(--b2);color:var(--t2)}
+.mp-net-row{display:flex;align-items:center;
+  gap:8px;margin-bottom:6px;font-size:12px}
+.mp-net-dot{width:8px;height:8px;border-radius:50%;
+  background:var(--a);flex-shrink:0}
+.mp-net-name{flex:1;color:var(--t);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.mp-net-cnt{color:var(--t2);font-size:11px}
+.mp-header-wrap{display:flex;align-items:center;
+  gap:16px;flex-wrap:wrap;padding-bottom:16px;
+  border-bottom:1px solid var(--b);margin-bottom:16px}
+.mp-avatar{width:64px;height:64px;border-radius:50%;
+  background:var(--s2);display:flex;align-items:center;
+  justify-content:center;font-size:22px;font-weight:700;
+  color:var(--a);flex-shrink:0;overflow:hidden}
+.mp-avatar img{width:100%;height:100%;object-fit:cover}
+.mp-info{flex:1}
+.mp-name{font-size:18px;font-weight:700;color:var(--t);
+  text-transform:uppercase;margin-bottom:4px}
+.mp-tags{display:flex;gap:6px;flex-wrap:wrap}
+.mp-tag-info{padding:2px 8px;border-radius:10px;
+  font-size:11px;background:var(--b2);color:var(--t2)}
+/* ── /MentalPrint ──────────────────────────────────── */
 </style>
 </head>
 <body>
@@ -563,6 +654,9 @@ body,html{overflow-x:hidden}
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               Linguagem
             </div>
+            <div id="pni-mentalprint" class="pi"
+              onclick="event.stopPropagation();sv('mentalprint')"
+              style="display:none">🧠 MentalPrint</div>
           </div>
           <div class="pill-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -910,6 +1004,108 @@ body,html{overflow-x:hidden}
         </div>
       </div>
 
+      <!-- MENTALPRINT -->
+      <div id="view-mentalprint" class="view" style="padding:16px">
+        <div id="mp-selector">
+          <label style="font-size:12px;color:var(--t2);flex-shrink:0">
+            Parlamentar:
+          </label>
+          <select id="mp-select"
+            onchange="mpSelectParlamentar(this.value, this.options[this.selectedIndex].text)">
+            <option value="">-- Selecionar parlamentar --</option>
+          </select>
+        </div>
+        <div id="mp-empty" style="text-align:center;padding:60px;color:var(--t2)">
+          Selecione um parlamentar para ver o MentalPrint
+        </div>
+        <div id="mp-content" style="display:none">
+          <!-- HEADER -->
+          <div id="mp-header" class="kg" style="margin-bottom:16px"></div>
+          <!-- KPIs -->
+          <div id="mp-kpis" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px"></div>
+          <!-- VOCABULÁRIO + FRASES -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+            <div class="kg"><div class="kgh"><span>🔊</span><span>Vocabulário</span></div>
+              <div id="mp-wordcloud" style="min-height:180px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:12px"></div>
+            </div>
+            <div class="kg"><div class="kgh"><span>💬</span><span>Frases Recorrentes</span></div>
+              <p style="font-size:11px;color:var(--t2);margin:0 0 12px">Expressões que repete — use-as para sintonizar</p>
+              <div id="mp-frases"></div>
+            </div>
+          </div>
+          <!-- RADAR DE TEMAS -->
+          <div class="kg" style="margin-bottom:16px">
+            <div class="kgh"><span>🎯</span><span>Radar de Temas</span></div>
+            <p style="font-size:11px;color:var(--t2);margin:0 0 12px">Os temas que mais discute</p>
+            <div id="b-mp-radar"><canvas id="c-mp-radar" height="280"></canvas></div>
+          </div>
+          <!-- TOM + COBERTURA -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+            <div class="kg">
+              <div class="kgh"><span>🛡️</span><span>Tom das Menções</span></div>
+              <p style="font-size:11px;color:var(--t2);margin:0 0 12px">Como a mídia cobre este parlamentar</p>
+              <div id="b-mp-tom"><canvas id="c-mp-tom" height="200"></canvas></div>
+              <div id="leg-mp-tom" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;font-size:11px"></div>
+            </div>
+            <div class="kg">
+              <div class="kgh"><span>📊</span><span>Cobertura por Tema</span></div>
+              <p style="font-size:11px;color:var(--t2);margin:0 0 12px">Em quais temas aparece nas menções</p>
+              <div id="mp-cobertura"></div>
+            </div>
+          </div>
+          <!-- MÍDIA + ATIVIDADE -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+            <div class="kg">
+              <div class="kgh"><span>📰</span><span>Presença em Mídia</span></div>
+              <div id="b-mp-midia"><canvas id="c-mp-midia" height="200"></canvas></div>
+              <div id="leg-mp-midia" style="margin-top:8px;font-size:11px"></div>
+            </div>
+            <div class="kg">
+              <div class="kgh"><span>📈</span><span>Atividade no Tempo</span></div>
+              <div id="b-mp-ativ"><canvas id="c-mp-ativ" height="200"></canvas></div>
+            </div>
+          </div>
+          <!-- INTELIGÊNCIA PARA NEGOCIAÇÃO -->
+          <div class="kg" style="margin-bottom:16px">
+            <div class="kgh" style="margin-bottom:16px">
+              <span>🧠</span>
+              <span style="font-size:16px;font-weight:700">Inteligência para Negociação</span>
+            </div>
+            <p style="font-size:12px;color:var(--t2);margin:-8px 0 16px">Chaves para conectar e comunicar efetivamente com este ator político</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+              <!-- COL 1 -->
+              <div>
+                <div style="font-size:12px;font-weight:600;margin-bottom:8px">Temas Obsessivos</div>
+                <p style="font-size:11px;color:var(--t2);margin:0 0 8px">Os temas onde mais se pronuncia</p>
+                <div id="mp-temas-obs"></div>
+                <div style="font-size:12px;font-weight:600;margin:16px 0 8px">Pontos Cegos</div>
+                <p style="font-size:11px;color:var(--t2);margin:0 0 8px">Temas em vídeos que não declara</p>
+                <div id="mp-pontos-cegos" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+              </div>
+              <!-- COL 2 -->
+              <div>
+                <div style="font-size:12px;font-weight:600;margin-bottom:8px">Guia de Linguagem</div>
+                <p style="font-size:11px;color:var(--t2);margin:0 0 8px">Estilo comunicacional</p>
+                <div id="mp-estilo"></div>
+                <div style="font-size:12px;font-weight:600;margin:16px 0 8px;text-transform:uppercase;letter-spacing:.5px">Frases-Chave a Replicar</div>
+                <div id="mp-frases-chave" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+              </div>
+              <!-- COL 3 -->
+              <div>
+                <div style="font-size:12px;font-weight:600;margin-bottom:8px">Rede de Organizações</div>
+                <p style="font-size:11px;color:var(--t2);margin:0 0 8px">Instituições que menciona</p>
+                <div id="mp-orgs" style="max-height:160px;overflow-y:auto"></div>
+                <div style="font-size:12px;font-weight:600;margin:16px 0 8px">Pessoas Referenciadas</div>
+                <div id="mp-pessoas" style="max-height:160px;overflow-y:auto"></div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:8px;font-size:11px;color:var(--t2);text-align:center;padding:8px">
+            Dados processados via IA — podem conter imprecisões
+          </div>
+        </div>
+      </div>
+
     </div>
   </main>
 </div>
@@ -1038,6 +1234,9 @@ const DIAS=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
 const MESES=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 
 let raw=[],fil=[],charts={},page=1,psz=25,sq='';
+let mpData={decl:[],menc:[],tweets:[],resumenes:[]};
+let mpParlId=null, mpParlNome='', mpCharts={};
+const MP_URL = 'https://taalqjipnahgvhvwrlrq.supabase.co';
 
 /* ════════════════════════════════════════
    PLATFORM LABELS
@@ -2111,6 +2310,7 @@ function sv(id){
   _pillCol=false;document.getElementById('pill').classList.remove('col');
   _activeView=id;
   if(id==='linguagem')renderLang();
+  if(id==='mentalprint')renderMentalPrint();
 }
 
 /* ════════════════════════════════════════
@@ -2782,10 +2982,503 @@ function renderLang(){
 }
 
 /* ════════════════════════════════════════
+   MENTALPRINT
+════════════════════════════════════════ */
+async function mpPopulateSelect(){
+  const KEY=window.MP_KEY||'';
+  const h={apikey:KEY,'Authorization':'Bearer '+KEY};
+  try{
+    const r=await fetch(MP_URL+'/rest/v1/declaraciones?select=parlamentar_id,parlamentar_nome&order=parlamentar_nome.asc',{headers:h});
+    if(!r.ok)return;
+    const d=await r.json();
+    const seen=new Map();
+    (d||[]).forEach(row=>{
+      if(row.parlamentar_id&&!seen.has(row.parlamentar_id))
+        seen.set(row.parlamentar_id,row.parlamentar_nome||'ID '+row.parlamentar_id);
+    });
+    const sel=document.getElementById('mp-select');
+    if(!sel)return;
+    seen.forEach((nome,id)=>{
+      const o=document.createElement('option');
+      o.value=id; o.textContent=nome; sel.appendChild(o);
+    });
+  }catch(e){console.warn('mpPopulateSelect:',e);}
+}
+
+async function mpSelectParlamentar(id,nome){
+  if(!id){
+    mpParlId=null; mpParlNome='';
+    document.getElementById('mp-empty').style.display='';
+    document.getElementById('mp-content').style.display='none';
+    document.getElementById('pni-mentalprint').style.display='none';
+    return;
+  }
+  mpParlId=parseInt(id); mpParlNome=nome;
+  document.getElementById('mp-empty').style.display='none';
+  document.getElementById('mp-content').style.display='';
+  document.getElementById('pni-mentalprint').style.display='';
+  await mpFetchAll(mpParlId);
+  mpRenderAll();
+}
+
+async function mpFetchTable(table,params,maxRows=2000){
+  const KEY=window.MP_KEY||'';
+  const h={apikey:KEY,'Authorization':'Bearer '+KEY};
+  let out=[],off=0,lim=500;
+  while(true){
+    const url=MP_URL+'/rest/v1/'+table+'?'+params+'&limit='+lim+'&offset='+off;
+    const r=await fetch(url,{headers:h});
+    if(!r.ok)break;
+    const d=await r.json();
+    out=out.concat(d||[]);
+    if(!d||d.length<lim||out.length>=maxRows)break;
+    off+=lim;
+  }
+  return out;
+}
+
+async function mpFetchAll(parlId){
+  document.getElementById('mp-content').style.opacity='0.5';
+  try{
+    const[decl,tweets]=await Promise.all([
+      mpFetchTable('declaraciones',
+        'select=parlamentar_id,parlamentar_nome,video_id,canal,declaracion,contexto,categorias,fecha,ruta'
+        +'&parlamentar_id=eq.'+parlId),
+      mpFetchTable('tweets_parlamentares',
+        'select=parlamentar_id,parlamentar_nome,twitter_username,texto,created_at_twitter,likes,retweets,views,is_retweet,categorias'
+        +'&parlamentar_id=eq.'+parlId+'&is_retweet=eq.false')
+    ]);
+    const menc=mpParlNome?await mpFetchBRMenores(mpParlNome):[];
+    const videoIds=[...new Set(decl.map(d=>d.video_id).filter(Boolean))];
+    let resumenes=[];
+    if(videoIds.length>0){
+      const chunk=videoIds.slice(0,50).join(',');
+      resumenes=await mpFetchTable('resumenes_youtube',
+        'select=video_id,canal,titulo,resumen,categorias,personas,organizaciones,fecha'
+        +'&video_id=in.('+chunk+')');
+    }
+    mpData={decl,menc,tweets,resumenes};
+  }catch(e){
+    console.error('mpFetchAll:',e);
+    mpData={decl:[],menc:[],tweets:[],resumenes:[]};
+  }
+  document.getElementById('mp-content').style.opacity='1';
+}
+
+async function mpFetchBRMenores(parlamentarNome){
+  const key=window.KEY||'';
+  const h={apikey:key,'Authorization':'Bearer '+key};
+  const nomeEnc=encodeURIComponent(parlamentarNome);
+  let out=[],off=0,lim=500;
+  while(true){
+    const url=`${URL_BASE}/rest/v1/%22BR_MENORES%22?select=TITULO,AUTOR,FECHA_PUBLICACION,PLATAFORMA,SENTIMIENTO,CATEGORIA,CONTENIDO&AUTOR=ilike.*${nomeEnc}*&limit=${lim}&offset=${off}`;
+    const r=await fetch(url,{headers:h});
+    if(!r.ok)break;
+    const d=await r.json();
+    if(!d||!Array.isArray(d))break;
+    out=out.concat(d.map(row=>({
+      parlamentar_nome:row.AUTOR||'',
+      texto:row.TITULO||'',
+      contexto:row.CONTENIDO||'',
+      categorias:[row.SENTIMIENTO,row.CATEGORIA].filter(Boolean).join(','),
+      fuente:row.PLATAFORMA||'',
+      titulo_noticia:row.TITULO||'',
+      fecha:row.FECHA_PUBLICACION||''
+    })));
+    if(d.length<lim||out.length>=2000)break;
+    off+=lim;
+  }
+  return out;
+}
+
+const MP_STOP=new Set(['a','ao','aos','as','até','com','como','da','das','de',
+  'dela','dele','depois','do','dos','e','ela','ele','em','entre','essa','esse',
+  'esta','este','eu','foi','há','isso','já','me','meu','minha','muito','na',
+  'nas','não','nem','no','nos','nós','o','os','ou','para','pela','pelo','por',
+  'que','quem','se','sem','ser','seu','seus','si','sob','sobre','sua','suas',
+  'também','te','tem','ter','todo','todos','uma','umas','uns','um','vos','é',
+  'à','às','aqui','ali','sim','talvez','hoje','ontem','agora','sempre','nunca',
+  'apenas','só','cada','toda','bem','então','assim','ainda','mesmo','depois',
+  'antes','onde','quando','porque']);
+
+function mpParseCSV(csv){
+  if(!csv||csv==='EMPTY')return[];
+  return csv.split(',').map(s=>s.trim()).filter(s=>s.length>1);
+}
+
+function mpTokenize(text){
+  if(!text)return[];
+  return text.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z\s]/g,' ')
+    .split(/\s+/)
+    .filter(w=>w.length>=4&&!MP_STOP.has(w));
+}
+
+function mpBuildVocab(decl,tweets,topN=50){
+  const freq={};
+  decl.forEach(d=>{
+    mpTokenize(d.declaracion).forEach(w=>{freq[w]=(freq[w]||0)+1;});
+    mpTokenize(d.contexto).forEach(w=>{freq[w]=(freq[w]||0)+.3;});
+  });
+  tweets.forEach(t=>mpTokenize(t.texto).forEach(w=>{freq[w]=(freq[w]||0)+.7;}));
+  const entries=Object.entries(freq).filter(([,c])=>c>=2)
+    .sort((a,b)=>b[1]-a[1]).slice(0,topN);
+  const max=entries[0]?.[1]||1;
+  return entries.map(([text,count])=>({text,size:Math.round(12+((count/max)*22))}));
+}
+
+function mpBuildTrigramas(decl,topN=10){
+  const freq={};
+  decl.forEach(d=>{
+    if(!d.declaracion)return;
+    const words=mpTokenize(d.declaracion).filter(w=>w.length>=3);
+    for(let i=0;i<words.length-2;i++){
+      const tri=words[i]+' '+words[i+1]+' '+words[i+2];
+      freq[tri]=(freq[tri]||0)+1;
+    }
+  });
+  return Object.entries(freq).filter(([,c])=>c>=2)
+    .sort((a,b)=>b[1]-a[1]).slice(0,topN)
+    .map(([phrase,count])=>({phrase:'"'+phrase+'"',count}));
+}
+
+function mpBuildTopics(decl,menc,topN=8){
+  const freq={};
+  decl.forEach(d=>mpParseCSV(d.categorias).forEach(c=>{freq[c]=(freq[c]||0)+1;}));
+  menc.forEach(m=>mpParseCSV(m.categorias).forEach(c=>{freq[c]=(freq[c]||0)+.5;}));
+  const entries=Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,topN);
+  const max=entries[0]?.[1]||1;
+  return entries.map(([topic,count])=>({topic,count:Math.round(count),pct:Math.round((count/max)*100)}));
+}
+
+function mpBuildMencTom(menc){
+  const freq={};
+  menc.forEach(m=>{
+    const cats=mpParseCSV(m.categorias);
+    const tone=cats.find(c=>/positiv|negativ|neutro|críti/i.test(c))||'Neutro';
+    freq[tone]=(freq[tone]||0)+1;
+  });
+  return Object.entries(freq).sort((a,b)=>b[1]-a[1]);
+}
+
+function mpBuildMediaPresence(menc){
+  const freq={};
+  menc.forEach(m=>{
+    const f=(m.fuente||'').split('/')[0]||'Outros';
+    freq[f]=(freq[f]||0)+1;
+  });
+  return Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,8);
+}
+
+function mpBuildTimeline(decl,tweets,menc){
+  const months={};
+  const add=(date,type)=>{
+    if(!date)return;
+    const k=date.slice(0,7);
+    if(!months[k])months[k]={decl:0,tweet:0,menc:0};
+    months[k][type]++;
+  };
+  decl.forEach(d=>add(d.fecha,'decl'));
+  tweets.forEach(t=>add((t.created_at_twitter||'').slice(0,10),'tweet'));
+  menc.forEach(m=>add(m.fecha||'','menc'));
+  const keys=Object.keys(months).sort().slice(-12);
+  return {
+    labels:keys.map(k=>{const[y,m]=k.split('-');return MESES[parseInt(m)-1]?.slice(0,3)+' '+y.slice(2);}),
+    decl:keys.map(k=>months[k].decl),
+    tweet:keys.map(k=>months[k].tweet),
+    menc:keys.map(k=>months[k].menc)
+  };
+}
+
+function mpBuildOrgs(resumenes,topN=15){
+  const freq={};
+  resumenes.forEach(r=>mpParseCSV(r.organizaciones).forEach(o=>{freq[o]=(freq[o]||0)+1;}));
+  return Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,topN);
+}
+
+function mpBuildPessoas(resumenes,topN=15){
+  const freq={};
+  resumenes.forEach(r=>mpParseCSV(r.personas).forEach(p=>{freq[p]=(freq[p]||0)+1;}));
+  return Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,topN);
+}
+
+function mpCalcEstilo(decl,tweets){
+  const allText=[...decl.map(d=>d.declaracion||''),...tweets.map(t=>t.texto||'')];
+  let qCnt=0,exCnt=0,longCnt=0,total=allText.length||1;
+  allText.forEach(txt=>{
+    if(txt.includes('?'))qCnt++;
+    if(txt.includes('!'))exCnt++;
+    const words=txt.split(/\s+/).length;
+    if(words>50)longCnt++;
+  });
+  return[
+    {emoji:'❓',lbl:'Interrogativo',pct:Math.round(qCnt/total*100),color:'#60a5fa'},
+    {emoji:'❗',lbl:'Assertivo',pct:Math.round(exCnt/total*100),color:'#f87171'},
+    {emoji:'📝',lbl:'Elaborado',pct:Math.round(longCnt/total*100),color:'#a78bfa'}
+  ];
+}
+
+function mpCalcPontosCegos(decl,resumenes){
+  const declCats=new Set();
+  decl.forEach(d=>mpParseCSV(d.categorias).forEach(c=>declCats.add(c)));
+  const resCats=new Set();
+  resumenes.forEach(r=>mpParseCSV(r.categorias).forEach(c=>resCats.add(c)));
+  return[...resCats].filter(c=>!declCats.has(c)).slice(0,8);
+}
+
+function mpDestroyCharts(){
+  Object.values(mpCharts).forEach(c=>{try{c.destroy();}catch(e){}});
+  mpCharts={};
+}
+
+function mpMkChart(id,type,labels,datasets,opts={}){
+  const el=document.getElementById(id);
+  if(!el)return;
+  if(mpCharts[id])mpCharts[id].destroy();
+  mpCharts[id]=new Chart(el.getContext('2d'),{
+    type,
+    data:{labels,datasets},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false}},
+      scales:type==='bar'||type==='line'?{
+        x:{grid:{color:'rgba(255,255,255,.05)'},ticks:{color:'var(--t2)',font:{size:10}}},
+        y:{grid:{color:'rgba(255,255,255,.05)'},ticks:{color:'var(--t2)',font:{size:10}}}
+      }:{},
+      ...opts
+    }
+  });
+}
+
+function mpRenderHeader(nome){
+  const el=document.getElementById('mp-header');
+  if(!el)return;
+  const initials=nome.split(' ').slice(0,2).map(w=>w[0]||'').join('').toUpperCase();
+  el.innerHTML=`<div class="mp-header-wrap">
+    <div class="mp-avatar">${initials}</div>
+    <div class="mp-info">
+      <div class="mp-name">${nome}</div>
+      <div class="mp-tags">
+        <span class="mp-tag-info">${mpData.decl.length} declarações</span>
+        <span class="mp-tag-info">${mpData.menc.length} menções</span>
+        <span class="mp-tag-info">${mpData.tweets.length} tweets</span>
+        <span class="mp-tag-info">${mpData.resumenes.length} vídeos</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function mpRenderKPIs(){
+  const el=document.getElementById('mp-kpis');
+  if(!el)return;
+  const totalLikes=mpData.tweets.reduce((s,t)=>s+(t.likes||0),0);
+  const totalViews=mpData.tweets.reduce((s,t)=>s+(t.views||0),0);
+  const canais=[...new Set(mpData.decl.map(d=>d.canal).filter(Boolean))].length;
+  const fontes=[...new Set(mpData.menc.map(m=>m.fuente).filter(Boolean))].length;
+  const kpis=[
+    {icon:'🎤',val:mpData.decl.length,lbl:'Declarações'},
+    {icon:'📰',val:mpData.menc.length,lbl:'Menções na mídia'},
+    {icon:'👍',val:totalLikes>=1000?(totalLikes/1000).toFixed(1)+'k':totalLikes,lbl:'Likes (tweets)'},
+    {icon:'📡',val:canais||fontes,lbl:'Canais/Fontes'}
+  ];
+  el.innerHTML=kpis.map(k=>`<div class="mp-kpi-card">
+    <div class="mp-kpi-icon">${k.icon}</div>
+    <div class="mp-kpi-val">${k.val}</div>
+    <div class="mp-kpi-lbl">${k.lbl}</div>
+  </div>`).join('');
+}
+
+function mpRenderWordcloud(){
+  const el=document.getElementById('mp-wordcloud');
+  if(!el)return;
+  const words=mpBuildVocab(mpData.decl,mpData.tweets,50);
+  const shuffled=[...words].sort(()=>Math.random()-.5);
+  el.innerHTML=shuffled.map(w=>
+    `<span class="mp-word" style="font-size:${w.size}px">${w.text}</span>`
+  ).join('');
+}
+
+function mpRenderFrases(){
+  const el=document.getElementById('mp-frases');
+  if(!el)return;
+  const tris=mpBuildTrigramas(mpData.decl,10);
+  const max=tris[0]?.count||1;
+  el.innerHTML=tris.map(t=>`<div class="mp-phrase-row">
+    <span class="mp-phrase-cnt">${t.count}</span>
+    <div class="mp-phrase-bar-wrap"><div class="mp-phrase-bar" style="width:${Math.round(t.count/max*100)}%"></div></div>
+    <span class="mp-phrase-txt" title="${t.phrase}">${t.phrase}</span>
+  </div>`).join('');
+}
+
+function mpRenderRadar(){
+  const topics=mpBuildTopics(mpData.decl,mpData.menc,8);
+  if(!topics.length)return;
+  mpMkChart('c-mp-radar','radar',
+    topics.map(t=>t.topic),
+    [{label:'Frequência',data:topics.map(t=>t.pct),
+      backgroundColor:'rgba(74,144,196,.25)',
+      borderColor:'#4a90c4',pointBackgroundColor:'#4a90c4',
+      pointRadius:4,borderWidth:2}],
+    {plugins:{legend:{display:false}},
+     scales:{r:{grid:{color:'rgba(255,255,255,.1)'},
+       ticks:{color:'var(--t2)',font:{size:9},backdropColor:'transparent'},
+       pointLabels:{color:'var(--t)',font:{size:10}}}}}
+  );
+}
+
+function mpRenderTom(){
+  const tom=mpBuildMencTom(mpData.menc);
+  if(!tom.length)return;
+  const colors=['#22c55e','#f04444','#f59e0b','#60a5fa','#a78bfa','#fb923c'];
+  mpMkChart('c-mp-tom','doughnut',
+    tom.map(([k])=>k),
+    [{data:tom.map(([,v])=>v),
+      backgroundColor:tom.map((_,i)=>colors[i%colors.length]),
+      borderWidth:0}],
+    {cutout:'65%',plugins:{legend:{display:false}}}
+  );
+  const legEl=document.getElementById('leg-mp-tom');
+  if(legEl) legEl.innerHTML=tom.map(([k,v],i)=>
+    `<span style="display:flex;align-items:center;gap:4px">
+      <span style="width:8px;height:8px;border-radius:50%;background:${colors[i%colors.length]}"></span>
+      ${k}: ${v}
+    </span>`).join('');
+}
+
+function mpRenderCobertura(){
+  const el=document.getElementById('mp-cobertura');
+  if(!el)return;
+  const topics=mpBuildTopics(mpData.menc,[],6);
+  const max=topics[0]?.pct||1;
+  el.innerHTML=topics.map(t=>`<div class="mp-bar-row">
+    <span class="mp-bar-lbl" title="${t.topic}">${t.topic}</span>
+    <div class="mp-bar-wrap"><div class="mp-bar-fill" style="width:${t.pct}%;background:#4a90c4"></div></div>
+    <span class="mp-bar-pct">${t.count}</span>
+  </div>`).join('');
+}
+
+function mpRenderMidia(){
+  const media=mpBuildMediaPresence(mpData.menc);
+  if(!media.length)return;
+  const colors=['#4a90c4','#7c3aed','#0891b2','#0d9488','#059669','#d97706','#dc2626','#db2777'];
+  mpMkChart('c-mp-midia','doughnut',
+    media.map(([k])=>k),
+    [{data:media.map(([,v])=>v),
+      backgroundColor:media.map((_,i)=>colors[i%colors.length]),
+      borderWidth:0}],
+    {cutout:'55%',plugins:{legend:{display:false}}}
+  );
+  const legEl=document.getElementById('leg-mp-midia');
+  if(legEl) legEl.innerHTML=media.map(([k,v],i)=>
+    `<div style="display:flex;align-items:center;gap:4px;margin-bottom:4px">
+      <span style="width:8px;height:8px;border-radius:50%;flex-shrink:0;background:${colors[i%colors.length]}"></span>
+      <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--t)">${k}</span>
+      <span style="color:var(--t2)">${v}</span>
+    </div>`).join('');
+}
+
+function mpRenderAtividade(){
+  const tl=mpBuildTimeline(mpData.decl,mpData.tweets,mpData.menc);
+  if(!tl.labels.length)return;
+  mpMkChart('c-mp-ativ','line',tl.labels,[
+    {label:'Declarações',data:tl.decl,borderColor:'#4a90c4',backgroundColor:'rgba(74,144,196,.15)',fill:true,tension:.4,pointRadius:3},
+    {label:'Tweets',data:tl.tweet,borderColor:'#60a5fa',backgroundColor:'rgba(96,165,250,.1)',fill:true,tension:.4,pointRadius:3},
+    {label:'Menções',data:tl.menc,borderColor:'#a78bfa',backgroundColor:'rgba(167,139,250,.1)',fill:true,tension:.4,pointRadius:3}
+  ],{plugins:{legend:{display:true,position:'top',labels:{color:'var(--t)',font:{size:10},boxWidth:10}}}});
+}
+
+function mpRenderTemasObs(){
+  const el=document.getElementById('mp-temas-obs');
+  if(!el)return;
+  const topics=mpBuildTopics(mpData.decl,[],5);
+  el.innerHTML=topics.map((t,i)=>`<div class="mp-obs-row">
+    <span class="mp-obs-rank">${i+1}</span>
+    <span class="mp-obs-topic">${t.topic}</span>
+    <span class="mp-obs-cnt">${t.count}x</span>
+  </div>`).join('');
+}
+
+function mpRenderPontosCegos(){
+  const el=document.getElementById('mp-pontos-cegos');
+  if(!el)return;
+  const cegos=mpCalcPontosCegos(mpData.decl,mpData.resumenes);
+  el.innerHTML=cegos.map(c=>`<span class="mp-chip">${c}</span>`).join('');
+  if(!cegos.length)el.innerHTML='<span style="font-size:11px;color:var(--t2)">—</span>';
+}
+
+function mpRenderEstilo(){
+  const el=document.getElementById('mp-estilo');
+  if(!el)return;
+  const estilos=mpCalcEstilo(mpData.decl,mpData.tweets);
+  el.innerHTML=estilos.map(e=>`<div class="mp-style-row">
+    <span class="mp-style-emoji">${e.emoji}</span>
+    <span class="mp-style-lbl">${e.lbl}</span>
+    <div class="mp-style-bar-wrap"><div class="mp-style-bar" style="width:${e.pct}%;background:${e.color}"></div></div>
+    <span class="mp-style-pct">${e.pct}%</span>
+  </div>`).join('');
+}
+
+function mpRenderFrasesChave(){
+  const el=document.getElementById('mp-frases-chave');
+  if(!el)return;
+  const tris=mpBuildTrigramas(mpData.decl,6);
+  el.innerHTML=tris.map(t=>`<span class="mp-tag">${t.phrase}</span>`).join('');
+}
+
+function mpRenderOrgs(){
+  const el=document.getElementById('mp-orgs');
+  if(!el)return;
+  const orgs=mpBuildOrgs(mpData.resumenes,15);
+  el.innerHTML=orgs.map(([name,cnt])=>`<div class="mp-net-row">
+    <span class="mp-net-dot"></span>
+    <span class="mp-net-name" title="${name}">${name}</span>
+    <span class="mp-net-cnt">${cnt}</span>
+  </div>`).join('');
+  if(!orgs.length)el.innerHTML='<span style="font-size:11px;color:var(--t2)">—</span>';
+}
+
+function mpRenderPessoas(){
+  const el=document.getElementById('mp-pessoas');
+  if(!el)return;
+  const pess=mpBuildPessoas(mpData.resumenes,15);
+  el.innerHTML=pess.map(([name,cnt])=>`<div class="mp-net-row">
+    <span class="mp-net-dot" style="background:#a78bfa"></span>
+    <span class="mp-net-name" title="${name}">${name}</span>
+    <span class="mp-net-cnt">${cnt}</span>
+  </div>`).join('');
+  if(!pess.length)el.innerHTML='<span style="font-size:11px;color:var(--t2)">—</span>';
+}
+
+function mpRenderAll(){
+  mpDestroyCharts();
+  mpRenderHeader(mpParlNome);
+  mpRenderKPIs();
+  mpRenderWordcloud();
+  mpRenderFrases();
+  mpRenderRadar();
+  mpRenderTom();
+  mpRenderCobertura();
+  mpRenderMidia();
+  mpRenderAtividade();
+  mpRenderTemasObs();
+  mpRenderPontosCegos();
+  mpRenderEstilo();
+  mpRenderFrasesChave();
+  mpRenderOrgs();
+  mpRenderPessoas();
+}
+
+function renderMentalPrint(){
+  if(mpParlId)mpRenderAll();
+}
+
+/* ════════════════════════════════════════
    INIT
 ════════════════════════════════════════ */
 startIntro();
 initPill();
+mpPopulateSelect();
 load();
 </script>
 </body>
