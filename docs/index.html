@@ -3220,7 +3220,7 @@ function mpPcmCard(p){
   if(p.nMenc)chips.push(`<span class="mp-pcm-chip" title="Menções na mídia">${p.nMenc} men</span>`);
   if(p.sentPos!=null)chips.push(`<span class="mp-pcm-chip pos" title="Tom positivo">${p.sentPos}%+</span>`);
   const statsEl=chips.length?`<div class="mp-pcm-stats">${chips.join('')}</div>`:'';
-  return`<div class="mp-pcm${isActive?' mp-pcm-active':''}" onclick="mpSearchSelect(${p.id},${JSON.stringify(nm)})" title="${esc(nm)}">
+  return`<div class="mp-pcm${isActive?' mp-pcm-active':''}" onclick="mpSearchSelect(+this.dataset.id,this.dataset.nome)" data-id="${p.id}" data-nome="${esc(nm)}" title="${esc(nm)}">
     <div class="mp-pcm-av">${initials}</div>
     <div class="mp-pcm-name">${esc(nm)}</div>
     ${temaEl}${statsEl}
@@ -3298,7 +3298,7 @@ function mpSearchFilter(){
   mpRenderBrowser(inp?.value||'');
   if(!q){if(dd)dd.style.display='none';_mpSearchFocusIdx=-1;return;}
   if(!shown.length){list.innerHTML='<li class="mp-search-empty">Nenhum parlamentar encontrado</li>';}
-  else{list.innerHTML=shown.map(p=>{const nm=p.nome.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'),'<mark>$1</mark>');return`<li class="mp-search-item${mpParlId===p.id?' selected':''}" onclick="mpSearchSelect(${p.id},${JSON.stringify(p.nome)})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>${nm}</span></li>`;}).join('');}
+  else{list.innerHTML=shown.map(p=>{const nm=p.nome.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'),'<mark>$1</mark>');return`<li class="mp-search-item${mpParlId===p.id?' selected':''}" onclick="mpSearchSelect(+this.dataset.id,this.dataset.nome)" data-id="${p.id}" data-nome="${esc(p.nome)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>${nm}</span></li>`;}).join('');}
   if(dd)dd.style.display='';
   _mpSearchFocusIdx=-1;
 }
