@@ -1692,7 +1692,8 @@ function showPasswordGate(){
     const inp=document.getElementById('otp-input');
     const row=document.getElementById('otp-row');
     const errEl=document.getElementById('otp-err');
-    const PASSWORD='111999';
+    const _h='b85d102254da2007fb34214f498d8c03037d2a11284d7b158ad1cb7a939e721e';
+    const _chk=async v=>{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(v));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('')===_h;};
     document.getElementById('intro').addEventListener('click',()=>inp.focus());
     row.addEventListener('click',()=>inp.focus());
     inp.addEventListener('input',()=>{
@@ -1704,22 +1705,24 @@ function showPasswordGate(){
         s.className='otp-slot'+(i<val.length?' filled':i===val.length?' active':'');
       }
       if(val.length===6){
-        if(val===PASSWORD){
-          gate.style.transition='opacity .25s';gate.style.opacity='0';
-          setTimeout(dismissIntro,200);
-        }else{
-          row.classList.add('otp-shake');
-          errEl.textContent='Código incorreto';
-          setTimeout(()=>{
-            row.classList.remove('otp-shake');
-            inp.value='';errEl.textContent='';
-            for(let i=0;i<6;i++){
-              const s=document.getElementById('otp-s'+i);
-              s.textContent='';s.className='otp-slot'+(i===0?' active':'');
-            }
-            inp.focus();
-          },600);
-        }
+        _chk(val).then(ok=>{
+          if(ok){
+            gate.style.transition='opacity .25s';gate.style.opacity='0';
+            setTimeout(dismissIntro,200);
+          }else{
+            row.classList.add('otp-shake');
+            errEl.textContent='Código incorreto';
+            setTimeout(()=>{
+              row.classList.remove('otp-shake');
+              inp.value='';errEl.textContent='';
+              for(let i=0;i<6;i++){
+                const s=document.getElementById('otp-s'+i);
+                s.textContent='';s.className='otp-slot'+(i===0?' active':'');
+              }
+              inp.focus();
+            },600);
+          }
+        });
       }
     });
     document.getElementById('otp-s0').classList.add('active');
