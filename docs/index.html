@@ -687,8 +687,9 @@ body,html{overflow-x:hidden}
 .mp-cloud-btn.active{border-color:var(--mp);color:var(--mp);background:rgba(139,92,246,.1)}
 .mp-cloud-canvas{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:18px 16px;background:var(--s1);border:1px solid var(--b);border-radius:var(--rad);min-height:80px}
 @keyframes mp-tag-in{from{opacity:0;transform:scale(.82)}to{opacity:1;transform:scale(1)}}
-.mp-cloud-tag{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:16px;cursor:pointer;transition:transform .18s,box-shadow .18s;border:1px solid transparent;font-weight:600;line-height:1.4;animation:mp-tag-in .3s ease both}
-.mp-cloud-tag:hover{transform:scale(1.07);box-shadow:0 3px 14px rgba(0,0,0,.3)}
+@keyframes mp-tag-drift{0%{transform:translate3d(0,0,0)}50%{transform:translate3d(var(--dx,4px),var(--dy,-3px),0)}100%{transform:translate3d(0,0,0)}}
+.mp-cloud-tag{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:16px;cursor:pointer;border:1px solid transparent;font-weight:600;line-height:1.4;animation:mp-tag-in .3s ease both,mp-tag-drift var(--drift-dur,12s) ease-in-out infinite}
+.mp-cloud-tag:hover{animation-play-state:paused;box-shadow:0 3px 14px rgba(0,0,0,.3)}
 .mp-cloud-tag-av{width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;flex-shrink:0}
 
 /* ── HERO PROFILE DASHBOARD ── */
@@ -1172,6 +1173,10 @@ body,html{overflow-x:hidden}
         <div id="mp-browser" class="cc mp-browser-wrap">
           <div class="mp-browser-hdr">
             <span id="mp-browser-label" style="font-size:12px;font-weight:600;color:var(--t2)">Todos os parlamentares</span>
+            <div id="mp-browser-sort-btns" style="display:flex;gap:5px">
+              <button class="mp-cloud-btn active" data-sort="alpha" onclick="mpSetBrowserSort('alpha')">A–Z</button>
+              <button class="mp-cloud-btn" data-sort="activity" onclick="mpSetBrowserSort('activity')">Mais ativos</button>
+            </div>
             <span id="mp-browser-stats" style="font-size:11px;color:var(--t3);font-family:'Fira Code',monospace"></span>
           </div>
           <div id="mp-browser-grid" class="mp-browser-grid"></div>
@@ -1514,7 +1519,7 @@ const MESES=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agos
 let raw=[],fil=[],charts={},page=1,psz=25,sq='';
 let mpData={decl:[],menc:[],tweets:[],resumenes:[]};
 let mpParlId=null, mpParlNome='', mpCharts={};
-let _mpAll=[],_mpSearchFocusIdx=-1,_mpBrowserPage=0,_mpBrowserFiltered=[],_mpCloudTopic=null;
+let _mpAll=[],_mpSearchFocusIdx=-1,_mpBrowserPage=0,_mpBrowserFiltered=[],_mpCloudTopic=null,_mpBrowserSort='alpha';
 const MP_BROWSER_PER=48;
 const MP_URL = 'https://taalqjipnahgvhvwrlrq.supabase.co';
 
@@ -3291,7 +3296,10 @@ function mpRenderBrowser(query=''){
   const stats=document.getElementById('mp-browser-stats');
   if(!grid)return;
   const q=(query||'').trim().toLowerCase();
-  _mpBrowserFiltered=q?_mpAll.filter(p=>p.nome.toLowerCase().includes(q)):_mpAll;
+  let _filtered=q?_mpAll.filter(p=>p.nome.toLowerCase().includes(q)):[..._mpAll];
+  _mpBrowserFiltered=_mpBrowserSort==='activity'
+    ?_filtered.sort((a,b)=>(b.nDecl||0)-(a.nDecl||0))
+    :_filtered.sort((a,b)=>a.nome.localeCompare(b.nome,'pt-BR'));
   _mpBrowserPage=0;
   const shown=_mpBrowserFiltered.slice(0,MP_BROWSER_PER);
   if(label)label.textContent=q?`Resultados: "${query}"`:'Todos os parlamentares';
@@ -3322,6 +3330,12 @@ function mpBrowserLoadMore(){
   if(start+MP_BROWSER_PER>=_mpBrowserFiltered.length)footer.style.display='none';
 }
 
+function mpSetBrowserSort(mode){
+  _mpBrowserSort=mode;
+  document.querySelectorAll('#mp-browser-sort-btns .mp-cloud-btn').forEach(b=>b.classList.toggle('active',b.dataset.sort===mode));
+  mpRenderBrowser(document.getElementById('mp-search-input')?.value||'');
+}
+
 /* ── TOPIC CLOUD ──────────────────────────────── */
 function mpRenderTopicCloud(){
   const wrap=document.getElementById('mp-topic-cloud-wrap');
@@ -3338,7 +3352,7 @@ function mpRenderTopicCloud(){
   const filterBar=document.getElementById('mp-cloud-filter-bar');
   if(filterBar)filterBar.innerHTML=
     `<button class="mp-cloud-btn${!_mpCloudTopic?' active':''}" onclick="mpSetCloudTopic(null)">Todos</button>`
-    +topTopics.map(t=>`<button class="mp-cloud-btn${_mpCloudTopic===t?' active':''}" onclick="mpSetCloudTopic(${JSON.stringify(t)})">${esc(t)}</button>`).join('');
+    +topTopics.map(t=>`<button class="mp-cloud-btn${_mpCloudTopic===t?' active':''}" data-topic="${esc(t)}" onclick="mpSetCloudTopic(this.dataset.topic)">${esc(t)}</button>`).join('');
   mpRenderCloudCanvas();
 }
 
@@ -3375,7 +3389,10 @@ function mpRenderCloudCanvas(){
     const delay=(i*0.018).toFixed(3);
     const words=nm.split(' ').filter(w=>w.length>1);
     const shortNm=words.length>=2?words[0]+' '+words[words.length-1]:nm;
-    return`<span class="mp-cloud-tag" style="font-size:${fs}px;opacity:${op};color:${col};border-color:${col}28;background:${col}0e;animation-delay:${delay}s" onclick="mpSearchSelect(${p.id},${JSON.stringify(nm)})" title="${esc(nm)} — ${_mpCloudTopic||p.topTema||''} (${val})"><span class="mp-cloud-tag-av" style="background:${col}35;color:${col}">${init}</span>${esc(shortNm)}</span>`;
+    const dx=((i*37)%9-4).toFixed(1)+'px';
+    const dy=((i*23)%7-3).toFixed(1)+'px';
+    const dur=(10+(i*11)%6).toFixed(1)+'s';
+    return`<span class="mp-cloud-tag" style="font-size:${fs}px;opacity:${op};color:${col};border-color:${col}28;background:${col}0e;animation-delay:${delay}s;--dx:${dx};--dy:${dy};--drift-dur:${dur}" onclick="mpSearchSelect(${p.id},${JSON.stringify(nm)},${_mpCloudTopic?JSON.stringify(_mpCloudTopic):'null'})" title="${esc(nm)} — ${_mpCloudTopic||p.topTema||''} (${val})"><span class="mp-cloud-tag-av" style="background:${col}35;color:${col}">${init}</span>${esc(shortNm)}</span>`;
   }).join('');
 }
 /* ── /TOPIC CLOUD ─────────────────────────────── */
@@ -3420,7 +3437,7 @@ function mpSearchFilter(){
   _mpSearchFocusIdx=-1;
 }
 
-function mpSearchSelect(id,nome){
+function mpSearchSelect(id,nome,presetTopic=null){
   const inp=document.getElementById('mp-search-input');
   if(inp)inp.value=nome;
   const dd=document.getElementById('mp-search-dropdown');
@@ -3429,7 +3446,7 @@ function mpSearchSelect(id,nome){
   if(clearBtn)clearBtn.style.display='';
   const countEl=document.getElementById('mp-search-count');
   if(countEl)countEl.textContent='';
-  mpSelectParlamentar(id,nome);
+  mpSelectParlamentar(id,nome,presetTopic);
 }
 
 function mpSearchClear(){
@@ -3502,7 +3519,7 @@ async function mpPopulateSelect(){
   }catch(e){console.warn('mpPopulateSelect:',e);}
 }
 
-async function mpSelectParlamentar(id,nome){
+async function mpSelectParlamentar(id,nome,presetTopic=null){
   const browser=document.getElementById('mp-browser');
   const cloud=document.getElementById('mp-topic-cloud-wrap');
   if(!id){
@@ -3520,6 +3537,7 @@ async function mpSelectParlamentar(id,nome){
   document.getElementById('mp-search-input').value=nome;
   document.getElementById('mp-search-clear').style.display='';
   document.getElementById('mp-search-dropdown').style.display='none';
+  _mpPendingTopic=presetTopic;
   await mpFetchAll(mpParlId);
   mpRenderAll();
 }
@@ -3857,7 +3875,7 @@ function mpRenderCoerenciaTemas(){
   </div>`).join('');
 }
 
-let _mpActiveTopic=null;
+let _mpActiveTopic=null,_mpPendingTopic=null;
 function mpRenderTopicPills(){
   const el=document.getElementById('mp-topic-pills');
   if(!el)return;
@@ -4223,6 +4241,7 @@ function mpRenderAll(){
   mpRenderFrases();
   mpRenderDeclList();
   mpRenderTopicPills();
+  if(_mpPendingTopic){const t=_mpPendingTopic;_mpPendingTopic=null;mpSwitchTab('temas');mpFilterTopic(t);}
   mpRenderCoerenciaTemas();
   mpRenderTemasObs();
   mpRenderPontosCegos();
